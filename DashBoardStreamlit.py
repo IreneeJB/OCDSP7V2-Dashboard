@@ -1,10 +1,10 @@
 import streamlit as st
-import myModel
+import myDashboard
 import plotly.express as px
 import pandas as pd
 
 # Initialize the client API
-myclient = myModel.ClientAPI("https://projet7.herokuapp.com/",".cache_api.json")
+myclient = myDashboard.ClientAPI("https://projet7.herokuapp.com/",".cache_api.json")
 myclient.save_cache(".cache_api.json")
 
 # Create a form with a single input field for the client ID
