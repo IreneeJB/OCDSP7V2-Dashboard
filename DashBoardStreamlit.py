@@ -17,11 +17,17 @@ if st.button("Submit"):
     client = myclient.get_client_info(id_value)
     pred = myclient.make_client_prediction(id_value)
     prets = myclient.get_client_prets(id_value)
+    importance = myclient.get_features_importance(id_value)
     
-    # Create a pie chart with plotly
-    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred, 'colors':['blue','red']}, values='pred', names='proba')
+    # Charts
+    st.title("Probabilité de solvabilité du client")
+    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
+
+    st.subheader("Critères d'influence dans le calcul de la probabilité")
+    fig = px.pie({'labels': importance[0], 'importance': importance[1]}, values='importance', names='labels')
     
+
     # Display client info and prets in tables
     client = pd.DataFrame(client, index = [1])
     client_perso_data = client.loc[:,['CODE_GENDER', 'DAYS_BIRTH', 'NAME_EDUCATION_TYPE', 'NAME_FAMILY_STATUS',
