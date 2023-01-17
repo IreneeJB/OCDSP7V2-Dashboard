@@ -21,11 +21,12 @@ if st.button("Submit"):
     
     # Charts
     st.title("Probabilité de solvabilité du client")
-    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
+    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', colors=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
 
     st.subheader("Critères d'influence dans le calcul de la probabilité")
     fig = px.pie({'labels': importance[0], 'importance': importance[1]}, values='importance', names='labels')
+    st.plotly_chart(fig)
     
 
     # Display client info and prets in tables
