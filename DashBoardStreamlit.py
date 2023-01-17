@@ -19,7 +19,7 @@ if st.button("Submit"):
     prets = myclient.get_client_prets(id_value)
     
     # Create a pie chart with plotly
-    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba')
+    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred, 'colors':['blue','red']}, values='pred', names='proba')
     st.plotly_chart(fig)
     
     # Display client info and prets in tables
