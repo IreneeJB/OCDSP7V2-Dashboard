@@ -75,7 +75,7 @@ if st.sidebar.button("Fiche client") :
 
 if st.sidebar.button("Demande de prêt") :
     st.subheader("Demande de prêt")
-    st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT']})
+    st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT']}")
     st.text(f"Type de prêt : {client.loc[:,'NAME_CONTRACT_TYPE']}")
     st.text(f"Rente annuelle : {client.loc[:,'AMT_ANNUITY']}")
 
