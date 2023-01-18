@@ -12,8 +12,6 @@ st.header("Home Credit DashBoard")
 id_value = st.text_input("Client's ID :")
 
 st.sidebar.header("Menu Principal")
-st.sidebar.button("Fiche client")
-st.sidebar.button("Demande de prêt")
 st.sidebar.button("Historique de prêt")
 
 # Submit button
@@ -47,7 +45,7 @@ if st.button("Submit"):
     
     
 if st.sidebar.button("Fiche client") :
-    st.text(f"\n\t\tFiche Client n°{id_value}")
+    st.subheader(f"\n\t\tFiche Client n°{id_value}")
 
     # Bloc informations personnelles
     with st.expander("Informations personnelles") :
@@ -74,3 +72,15 @@ if st.sidebar.button("Fiche client") :
         if client_poss_data.loc[:,'FLAG_OWN_CAR'] == 'Y' :
             st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE']}")
         st.text(f"Propriétaire d'un apparetement : {client_poss_data.loc[:,'FLAG_OWN_REALTY']}")
+
+if st.sidebar.button("Demande de prêt") :
+    st.subheader("Demande de prêt")
+    st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT']})
+    st.text(f"Type de prêt : {client.loc[:,'NAME_CONTRACT_TYPE']}")
+    st.text(f"Rente annuelle : {client.loc[:,'AMT_ANNUITY']}")
+
+    # Charts
+    st.title("Probabilité de solvabilité du client")
+    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
+    st.plotly_chart(fig)
+
