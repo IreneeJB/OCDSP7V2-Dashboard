@@ -33,45 +33,45 @@ client_poss_data = client.loc[:,['FLAG_OWN_CAR', 'OWN_CAR_AGE', 'FLAG_OWN_REALTY
 client_pro_data = client.loc[:,['AMT_INCOME_TOTAL', 'NAME_INCOME_TYPE', 'DAYS_EMPLOYED', 'FLAG_WORK_PHONE',
                                 'OCCUPATION_TYPE']]    
     
-    if st.sidebar.button("Fiche client") :
-        st.subheader(f"\n\t\tFiche Client n°{id_value}")
+if st.sidebar.button("Fiche client") :
+    st.subheader(f"\n\t\tFiche Client n°{id_value}")
 
-        # Bloc informations personnelles
-        with st.expander("Informations personnelles") :
-            st.text(f"Age : {client_perso_data.loc[:,'AGE']}")
-            st.text(f"Sexe : {client_perso_data.loc[:,'CODE_GENDER']}")
-            st.text(f"Niveau d'éducation : {client_perso_data.loc[:,'NAME_EDUCATION_TYPE']}")
-            st.text(f"Statut familial : {client_perso_data.loc[:,'NAME_FAMILY_STATUS']}")
-            st.text(f"Nombre d'enfants : {client_perso_data.loc[:,'CNT_CHILDREN']}")
-            st.text(f"Type d'habitation : {client_perso_data.loc[:,'NAME_HOUSING_TYPE']}")
-            st.text(f"Numéro de mobile : {client_perso_data.loc[:,'FLAG_MOBIL']}")
-            st.text(f"Adresse e-mail : {client_perso_data.loc[:,'FLAG_EMAIL']}")
+    # Bloc informations personnelles
+    with st.expander("Informations personnelles") :
+        st.text(f"Age : {client_perso_data.loc[:,'AGE']}")
+        st.text(f"Sexe : {client_perso_data.loc[:,'CODE_GENDER']}")
+        st.text(f"Niveau d'éducation : {client_perso_data.loc[:,'NAME_EDUCATION_TYPE']}")
+        st.text(f"Statut familial : {client_perso_data.loc[:,'NAME_FAMILY_STATUS']}")
+        st.text(f"Nombre d'enfants : {client_perso_data.loc[:,'CNT_CHILDREN']}")
+        st.text(f"Type d'habitation : {client_perso_data.loc[:,'NAME_HOUSING_TYPE']}")
+        st.text(f"Numéro de mobile : {client_perso_data.loc[:,'FLAG_MOBIL']}")
+        st.text(f"Adresse e-mail : {client_perso_data.loc[:,'FLAG_EMAIL']}")
 
-        # Bloc informations professionnelles
-        with st.expander("Informations professionnelles") :
-            st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL']}")
-            st.text(f"Type de revenu : {client_pro_data.loc[:,'NAME_INCOME_TYPE']}")
-            st.text(f"Nombre de jours travaillés : {client_pro_data.loc[:,'DAYS_EMPLOYED']}")
-            st.text(f"Type d'emploi : {client_pro_data.loc[:,'OCCUPATION_TYPE']}")
-            st.text(f"Numéro de modile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE']}")
-        
-        # Bloc informations de propriété
-        with st.expander("Informations de propriété") :
-            st.text(f"Propriétaire d'une voiture : {client_poss_data.loc[:,'FLAG_OWN_CAR']}")
-            if client_poss_data.loc[:,'FLAG_OWN_CAR'] == 'Y' :
-                st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE']}")
-            st.text(f"Propriétaire d'un apparetement : {client_poss_data.loc[:,'FLAG_OWN_REALTY']}")
+    # Bloc informations professionnelles
+    with st.expander("Informations professionnelles") :
+        st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL']}")
+        st.text(f"Type de revenu : {client_pro_data.loc[:,'NAME_INCOME_TYPE']}")
+        st.text(f"Nombre de jours travaillés : {client_pro_data.loc[:,'DAYS_EMPLOYED']}")
+        st.text(f"Type d'emploi : {client_pro_data.loc[:,'OCCUPATION_TYPE']}")
+        st.text(f"Numéro de modile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE']}")
+    
+    # Bloc informations de propriété
+    with st.expander("Informations de propriété") :
+        st.text(f"Propriétaire d'une voiture : {client_poss_data.loc[:,'FLAG_OWN_CAR']}")
+        if client_poss_data.loc[:,'FLAG_OWN_CAR'] == 'Y' :
+            st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE']}")
+        st.text(f"Propriétaire d'un apparetement : {client_poss_data.loc[:,'FLAG_OWN_REALTY']}")
 
-    if st.sidebar.button("Demande de prêt") :
-        st.subheader("Demande de prêt")
-        st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT']}")
-        st.text(f"Type de prêt : {client.loc[:,'NAME_CONTRACT_TYPE']}")
-        st.text(f"Rente annuelle : {client.loc[:,'AMT_ANNUITY']}")
+if st.sidebar.button("Demande de prêt") :
+    st.subheader("Demande de prêt")
+    st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT']}")
+    st.text(f"Type de prêt : {client.loc[:,'NAME_CONTRACT_TYPE']}")
+    st.text(f"Rente annuelle : {client.loc[:,'AMT_ANNUITY']}")
 
-        # Charts
-        st.title("Probabilité de solvabilité du client")
-        fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
-        st.plotly_chart(fig)
+    # Charts
+    st.title("Probabilité de solvabilité du client")
+    fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
+    st.plotly_chart(fig)
 
 
 
