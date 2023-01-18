@@ -41,8 +41,8 @@ if st.sidebar.button("Fiche client") :
 
     # Bloc informations personnelles
     with st.expander("Informations personnelles") :
-        st.text(f"Age : {client_perso_data.loc[:,'AGE'].iloc[0]}")
-        st.text(f"Sexe : {client_perso_data.loc[:,'CODE_GENDER']}")
+        st.text(f"Age : {client_perso_data.loc[:,'AGE'].iloc[0]} ans")
+        st.text(f"Sexe : {client_perso_data.loc[:,'CODE_GENDER'].iloc[0]}")
         st.text(f"Niveau d'éducation : {client_perso_data.loc[:,'NAME_EDUCATION_TYPE'].iloc[0]}")
         st.text(f"Statut familial : {client_perso_data.loc[:,'NAME_FAMILY_STATUS'].iloc[0]}")
         st.text(f"Nombre d'enfants : {client_perso_data.loc[:,'CNT_CHILDREN'].iloc[0]}")
@@ -62,7 +62,7 @@ if st.sidebar.button("Fiche client") :
     with st.expander("Informations de propriété") :
         st.text(f"Propriétaire d'une voiture : {client_poss_data.loc[:,'FLAG_OWN_CAR'].iloc[0]}")
         if client_poss_data.loc[:,'FLAG_OWN_CAR'].iloc[0] == 'Y' :
-            st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE'].iloc[0]}")
+            st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE'].iloc[0]} ans")
         st.text(f"Propriétaire d'un apparetement : {client_poss_data.loc[:,'FLAG_OWN_REALTY'].iloc[0]}")
 
 if st.sidebar.button("Demande de prêt") :
