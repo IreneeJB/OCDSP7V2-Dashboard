@@ -38,9 +38,9 @@ if st.sidebar.button("Fiche client") :
 
     # Bloc informations personnelles
     with st.expander("Informations personnelles") :
-        st.text(f"Age : {client_perso_data.loc[:,'AGE']}")
-        st.text(f"Sexe : {client_perso_data.loc[:,'CODE_GENDER']}")
-        st.text(f"Niveau d'éducation : {client_perso_data.loc[:,'NAME_EDUCATION_TYPE']}")
+        st.text(f"Age : {client_perso_data.loc['AGE']}")
+        st.text(f"Sexe : {client_perso_data.loc['CODE_GENDER']}")
+        st.text(f"Niveau d'éducation : {client_perso_data.loc['NAME_EDUCATION_TYPE']}")
         st.text(f"Statut familial : {client_perso_data.loc[:,'NAME_FAMILY_STATUS']}")
         st.text(f"Nombre d'enfants : {client_perso_data.loc[:,'CNT_CHILDREN']}")
         st.text(f"Type d'habitation : {client_perso_data.loc[:,'NAME_HOUSING_TYPE']}")
