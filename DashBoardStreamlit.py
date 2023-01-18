@@ -9,7 +9,7 @@ myclient.save_cache(".cache_api.json")
 
 # Create a form with a single input field for the client ID
 st.header("Home Credit DashBoard")
-id_value = st.text_input("Client's ID :", value = "100042", max_char = 6)
+id_value = st.text_input("Client's ID :", value = "100042", max_chars = 6)
 
 st.sidebar.header("Menu Principal")
 st.sidebar.button("Historique de prêt")
