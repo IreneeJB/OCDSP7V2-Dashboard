@@ -13,6 +13,10 @@ id_value = st.text_input("Client's ID :")
 
 # Submit button
 if st.button("Submit"):
+    st.sidebar.header("Menu Principal")
+    st.sidebar.button("Fiche client")
+    st.sidebar.button("Demande de prêt")
+    st.sidebar.button("Historique de prêt")
     # Get client info and prediction
     client = myclient.get_client_info(id_value)
     pred = myclient.make_client_prediction(id_value)
