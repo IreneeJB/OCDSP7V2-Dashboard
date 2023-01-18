@@ -56,7 +56,7 @@ if st.sidebar.button("Fiche client") :
         st.text(f"Type de revenu : {client_pro_data.loc[:,'NAME_INCOME_TYPE'].iloc[0]}")
         st.text(f"Nombre de jours travaillés : {client_pro_data.loc[:,'DAYS_EMPLOYED'].iloc[0]}")
         st.text(f"Type d'emploi : {client_pro_data.loc[:,'OCCUPATION_TYPE'].iloc[0]}")
-        st.text(f"Numéro de modile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE'].iloc[0]}")
+        st.text(f"Numéro de mobile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE'].iloc[0]}")
     
     # Bloc informations de propriété
     with st.expander("Informations de propriété") :
