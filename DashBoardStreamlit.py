@@ -76,7 +76,7 @@ if st.sidebar.button("Demande de prêt") :
     st.plotly_chart(fig)
 
 if st.sidebar.button("Historique de prêt") :
-    st.subheader("Historique de prêts") :
+    st.subheader("Historique de prêts")
     st.text("Prêts en cours")
     for i in range len(prets) :
         pret =  prets.iloc[i:]
