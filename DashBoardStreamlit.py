@@ -12,7 +12,6 @@ st.header("Home Credit DashBoard")
 id_value = st.text_input("Client's ID :", value = "100042", max_chars = 6)
 
 st.sidebar.header("Menu Principal")
-st.sidebar.button("Historique de prêt")
 
 # Submit button
 # if st.button("Submit"):
@@ -75,6 +74,25 @@ if st.sidebar.button("Demande de prêt") :
     st.title("Probabilité de solvabilité du client")
     fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
+
+if st.sidebar.button("Historique de prêt") :
+    st.subheader("Historique de prêts") :
+    st.text("Prêts en cours")
+    for i in range len(prets) :
+        pret =  prets.iloc[i:]
+        if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
+            with st.expander("Prêt ouvert") :
+                st.text(f"Ouvert depuis : {0-pret.loc[:,'DAYS_CREDIT'].iloc[0]} jours")
+                st.text(f"Montant du prêt : {pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]}")
+                st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
+                st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
+
+                if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
+                    st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
+                    st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
+
+
+
 
 
 
