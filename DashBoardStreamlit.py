@@ -79,6 +79,7 @@ if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
     st.text("Prêts en cours")
     for i in range(len(prets)) :
+        print(prets)
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
             with st.expander("Prêt ouvert") :
