@@ -19,7 +19,7 @@ st.sidebar.header("Menu Principal")
 client = myclient.get_client_info(id_value)
 pred = myclient.make_client_prediction(id_value)
 prets = myclient.get_client_prets(id_value)
-prets = pd.DataFrame(pret)
+prets = pd.DataFrame(prets)
 importance = myclient.get_features_importance(id_value)
 
 # split client info and prets in tables
