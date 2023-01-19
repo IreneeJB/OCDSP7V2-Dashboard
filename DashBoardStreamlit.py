@@ -19,6 +19,7 @@ st.sidebar.header("Menu Principal")
 client = myclient.get_client_info(id_value)
 pred = myclient.make_client_prediction(id_value)
 prets = myclient.get_client_prets(id_value)
+prets = pd.DataFrame(pret)
 importance = myclient.get_features_importance(id_value)
 
 # split client info and prets in tables
@@ -79,7 +80,6 @@ if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
     st.text("Prêts en cours")
     for i in range(len(prets)) :
-        print(prets)
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
             with st.expander("Prêt ouvert") :
