@@ -54,7 +54,7 @@ if st.sidebar.button("Fiche client") :
     with st.expander("Informations professionnelles") :
         st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}")
         st.text(f"Type de revenu : {client_pro_data.loc[:,'NAME_INCOME_TYPE'].iloc[0]}")
-        st.text(f"Nombre de jours travaillés : {client_pro_data.loc[:,'DAYS_EMPLOYED'].iloc[0]}")
+        st.text(f"Nombre de jours travaillés : {0-client_pro_data.loc[:,'DAYS_EMPLOYED'].iloc[0]}")
         st.text(f"Type d'emploi : {client_pro_data.loc[:,'OCCUPATION_TYPE'].iloc[0]}")
         st.text(f"Numéro de mobile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE'].iloc[0]}")
     
@@ -82,7 +82,7 @@ if st.sidebar.button("Historique de prêt") :
     mask = prets.loc[:,"CREDIT_ACTIVE"] == "Active"
     st.text(f"Nombre de prêts ouverts : {prets[mask].shape[0]} prêts.")
     st.text(f"Montant total des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM'].sum()}")
-    st.text(f"Montant à rembourser des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()}")
+    st.text(f"Montant à rembourser des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()} || {int(100*prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()/prets[mask].loc[:,'AMT_CREDIT_SUM'].sum())/100}")
     for i in range(len(prets)) :
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
@@ -90,12 +90,11 @@ if st.sidebar.button("Historique de prêt") :
                 st.text(f"Ouvert depuis : {0-pret.loc[:,'DAYS_CREDIT'].iloc[0]} jours")
                 st.text(f"Montant du prêt : {pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]}")
                 st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
-                st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
 
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
-    st.text("Prêts clôturés")
+    st.markdown("__Prêts clôturés__")
     mask = prets.loc[:,"CREDIT_ACTIVE"] != "Active"
     st.text(f"Nombre de prêts ouverts : {prets.loc[mask,:].shape[0]} prêts.")
     st.text(f"Montant total des prêts clôturés : {prets.loc[mask,'AMT_CREDIT_SUM'].sum()}")
