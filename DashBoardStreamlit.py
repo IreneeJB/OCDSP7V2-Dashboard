@@ -78,7 +78,11 @@ if st.sidebar.button("Demande de prêt") :
 
 if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
-    st.text("Prêts en cours")
+    st.markdown("__Prêts en cours__")
+    mask = prets.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active"
+    st.text(f"Nombre de prêts ouverts : {prets.loc[mask,:].shape[0]} prêts.")
+    st.text(f"Montant total des prêts en cours : {prets.loc[mask,'AMT_CREDIT_SUM'].sum()}")
+    st.text(f"Montant à rembourser des prêts en cours : {prets.loc[mask,'AMT_CREDIT_SUM_DEBT'].sum()}")
     for i in range(len(prets)) :
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
@@ -92,6 +96,9 @@ if st.sidebar.button("Historique de prêt") :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
     st.text("Prêts clôturés")
+    mask = prets.loc[:,"CREDIT_ACTIVE"].iloc[0] != "Active"
+    st.text(f"Nombre de prêts ouverts : {prets.loc[mask,:].shape[0]} prêts.")
+    st.text(f"Montant total des prêts clôturés : {prets.loc[mask,'AMT_CREDIT_SUM'].sum()}")
     for i in range(len(prets)) :
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] != "Active" :
