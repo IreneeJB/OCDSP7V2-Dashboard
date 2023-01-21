@@ -80,9 +80,9 @@ if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
     st.markdown("__Prêts en cours__")
     mask = prets.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active"
-    st.text(f"Nombre de prêts ouverts : {prets.loc[prets.loc[:,'CREDIT_ACTIVE'].iloc[0] == 'Active',:].shape[0]} prêts.")
-    st.text(f"Montant total des prêts en cours : {prets.loc[prets.loc[:,'CREDIT_ACTIVE'].iloc[0] == 'Active','AMT_CREDIT_SUM'].sum()}")
-    st.text(f"Montant à rembourser des prêts en cours : {prets.loc[prets.loc[:,'CREDIT_ACTIVE'].iloc[0] == 'Active','AMT_CREDIT_SUM_DEBT'].sum()}")
+    st.text(f"Nombre de prêts ouverts : {prets[mask].shape[0]} prêts.")
+    st.text(f"Montant total des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM'].sum()}")
+    st.text(f"Montant à rembourser des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()}")
     for i in range(len(prets)) :
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
