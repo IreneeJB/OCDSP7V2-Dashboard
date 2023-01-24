@@ -81,7 +81,7 @@ if st.sidebar.button("Demande de prêt") :
     st.plotly_chart(fig)
 
     st.subheader("Critères d'influence dans le calcul de la probabilité")
-    fig = px.bar({'labels': importance['names'], 'importance': importance['value']}, values='importance', names='labels')
+    fig = px.bar(values=importance['value'], names=importance['names'])
     st.plotly_chart(fig)
 
 if st.sidebar.button("Historique de prêt") :
