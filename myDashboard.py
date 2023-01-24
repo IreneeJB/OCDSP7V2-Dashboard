@@ -154,7 +154,7 @@ class ClientAPI:
                 "info":{},
                 "prediction":{},
                 "prets":{},
-                "feature_importance":{}
+                "feature_importance":{},
                 "group_info" : {}
         }
 
