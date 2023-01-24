@@ -58,7 +58,7 @@ if st.sidebar.button("Fiche client") :
     # Bloc informations professionnelles
     with st.expander("Informations professionnelles") :
         job = client_pro_data.loc[:,'OCCUPATION_TYPE'].iloc[0]
-        if (client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] >= stats.loc[stats['OCCUPATION_TYPE'] == job,'AMT_INCOME_TOTAL']).bool() :
+        if (client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] >= stats.loc[stats['OCCUPATION_TYPE'] == job,'AMT_INCOME_TOTAL']).any() :
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Supérieur à la médiane")
         else : 
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Inférieur à la médiane")
