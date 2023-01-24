@@ -79,9 +79,8 @@ if st.sidebar.button("Demande de prêt") :
     st.title("Critères d'influence sur la solvabilité du client")
     fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', )  #color=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
-    print(importance)
     st.subheader("Critères d'influence dans le calcul de la probabilité")
-    fig = px.bar(values=importance['value'], names=importance['names'])
+    fig = px.bar(values=importance[1], names=importance[0])
     st.plotly_chart(fig)
 
 if st.sidebar.button("Historique de prêt") :
