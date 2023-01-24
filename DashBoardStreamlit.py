@@ -79,7 +79,7 @@ if st.sidebar.button("Demande de prêt") :
     st.title("Critères d'influence sur la solvabilité du client")
     shapdf = pd.DataFrame({'values' : importance[1],
                                'names' : importance[0]})
-    fig = px.bar(shapdf, x = 'names', y = 'values')
+    fig = px.bar(shapdf, x = 'names', y = 'values', color = 5*['red'] + 5*['green'])
     st.plotly_chart(fig)
 
 if st.sidebar.button("Historique de prêt") :
