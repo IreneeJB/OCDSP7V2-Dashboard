@@ -22,7 +22,8 @@ prets = myclient.get_client_prets(id_value)
 prets = pd.DataFrame(prets)
 importance = myclient.get_features_importance(id_value)
 stats = myclient.get_group_infos(id_value)
-print(stats)
+stats = pd.DataFrame({'OCCUPATION_TYPE' : stats[0],
+                      'AMT_INCOME_TOTAL': stats [1]})
 
 # split client info and prets in tables
 try :
@@ -56,7 +57,7 @@ if st.sidebar.button("Fiche client") :
 
     # Bloc informations professionnelles
     with st.expander("Informations professionnelles") :
-        if client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] > stats.loc['AMT_INCOME_TOTAL'] :
+        if client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] >= stats.loc[stats['OCCUPATION_TYPE'] == client_pro_data['OCCUPATION_TYPE'],'AMT_INCOME_TOTAL'] :
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Supérieur à la médiane")
         else : 
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Inférieur à la médiane")
