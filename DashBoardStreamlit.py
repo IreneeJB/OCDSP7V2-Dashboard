@@ -36,6 +36,8 @@ try :
 except : 
     pass
     
+
+
 if st.sidebar.button("Fiche client") :
     st.subheader(f"\n\t\tFiche Client n°{id_value}")
 
@@ -65,6 +67,8 @@ if st.sidebar.button("Fiche client") :
             st.text(f"Age de la voiture : {client_poss_data.loc[:,'OWN_CAR_AGE'].iloc[0]} ans")
         st.text(f"Propriétaire d'un apparetement : {client_poss_data.loc[:,'FLAG_OWN_REALTY'].iloc[0]}")
 
+
+
 if st.sidebar.button("Demande de prêt") :
     st.subheader("Demande de prêt")
     st.text(f"Montant du prêt : {client.loc[:,'AMT_CREDIT'].iloc[0]}")
@@ -82,6 +86,8 @@ if st.sidebar.button("Demande de prêt") :
     fig = px.bar(shapdf, x = 'names', y = 'values', color = 5*['red'] + 5*['green'])
     st.plotly_chart(fig)
 
+
+
 if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
     st.markdown("__Prêts en cours__")
@@ -98,9 +104,13 @@ if st.sidebar.button("Historique de prêt") :
                 st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
                 st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
 
+                jaugedf = pd.DataFrame({'remboursé' : pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]-pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0],
+                                       'A rembourser' : pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]})
+                fig = px.bar(jaugedf)
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
+
     st.markdown("__Prêts clôturés__")
     mask = prets.loc[:,"CREDIT_ACTIVE"] != "Active"
     st.text(f"Nombre de prêts ouverts : {prets.loc[mask,:].shape[0]} prêts.")
