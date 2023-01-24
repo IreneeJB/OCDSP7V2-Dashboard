@@ -8,7 +8,7 @@ myclient = myDashboard.ClientAPI("https://projet7.herokuapp.com/",".cache_api.js
 myclient.save_cache(".cache_api.json")
 
 # Create a form with a single input field for the client ID
-st.header("Home Credit DashBoard")
+st.title("Prêt à dépenser - DashBoard")
 id_value = st.text_input("Client's ID :", value = "100042", max_chars = 6)
 
 st.sidebar.header("Menu Principal")
@@ -88,7 +88,7 @@ if st.sidebar.button("Historique de prêt") :
     mask = prets.loc[:,"CREDIT_ACTIVE"] == "Active"
     st.text(f"Nombre de prêts ouverts : {prets[mask].shape[0]} prêts.")
     st.text(f"Montant total des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM'].sum()}")
-    st.text(f"Montant à rembourser des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()} || {int(100*prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()/prets[mask].loc[:,'AMT_CREDIT_SUM'].sum())/100}")
+    st.text(f"Montant à rembourser des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()} || {int(10000*prets[mask].loc[:,'AMT_CREDIT_SUM_DEBT'].sum()/prets[mask].loc[:,'AMT_CREDIT_SUM'].sum())/100} %")
     for i in range(len(prets)) :
         pret =  prets.iloc[i:]
         if pret.loc[:,"CREDIT_ACTIVE"].iloc[0] == "Active" :
@@ -116,17 +116,3 @@ if st.sidebar.button("Historique de prêt") :
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
-
-
-
-
-
-
-# # Charts
-# st.title("Probabilité de solvabilité du client")
-# fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', )  #color=['#00ff00', '#ff0000'])
-# st.plotly_chart(fig)
-
-# st.subheader("Critères d'influence dans le calcul de la probabilité")
-# fig = px.pie({'labels': importance[0], 'importance': importance[1]}, values='importance', names='labels')
-# st.plotly_chart(fig)
