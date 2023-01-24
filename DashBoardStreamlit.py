@@ -82,11 +82,12 @@ if st.sidebar.button("Demande de prêt") :
     st.text(f"Type de prêt : {client.loc[:,'NAME_CONTRACT_TYPE'].iloc[0]}")
     st.text(f"Rente annuelle : {client.loc[:,'AMT_ANNUITY'].iloc[0]}")
 
-    # Charts
+    # Charts 1
     st.title("Probabilité de solvabilité du client")
     fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', color=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
-    # Charts
+    
+    # Charts 2
     st.title("Critères d'influence sur la solvabilité du client")
     shapdf = pd.DataFrame({'values' : importance[1],
                                'names' : importance[0]})
