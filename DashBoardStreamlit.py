@@ -104,9 +104,9 @@ if st.sidebar.button("Historique de prêt") :
                 st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
                 st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
 
-                jaugedf = pd.DataFrame({'remboursé' : pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]-pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0],
-                                       'A rembourser' : pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]})
-                fig = px.bar(jaugedf)
+                jaugedf = pd.DataFrame({'remboursé' : [pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]-pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]],
+                                       'A rembourser' : [pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]]})
+                fig = px.bar(jaugedf, orientation = 'h', barmode = 'stack')
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
