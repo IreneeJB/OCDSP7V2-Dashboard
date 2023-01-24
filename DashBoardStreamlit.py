@@ -57,13 +57,14 @@ if st.sidebar.button("Fiche client") :
 
     # Bloc informations professionnelles
     with st.expander("Informations professionnelles") :
-        if client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] >= stats.loc[stats['OCCUPATION_TYPE'] == client_pro_data['OCCUPATION_TYPE'],'AMT_INCOME_TOTAL'].iloc[0] :
+        job = client_pro_data.loc[:,'OCCUPATION_TYPE'].iloc[0]
+        if client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0] >= stats.loc[stats['OCCUPATION_TYPE'] == job,'AMT_INCOME_TOTAL'].iloc[0] :
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Supérieur à la médiane")
         else : 
             st.text(f"Revenu Annuel : {client_pro_data.loc[:,'AMT_INCOME_TOTAL'].iloc[0]}    |   Inférieur à la médiane")
         st.text(f"Type de revenu : {client_pro_data.loc[:,'NAME_INCOME_TYPE'].iloc[0]}")
         st.text(f"Nombre de jours travaillés : {0-client_pro_data.loc[:,'DAYS_EMPLOYED'].iloc[0]}")
-        st.text(f"Type d'emploi : {client_pro_data.loc[:,'OCCUPATION_TYPE'].iloc[0]}")
+        st.text(f"Type d'emploi : {job}")
         st.text(f"Numéro de mobile professionel : {client_pro_data.loc[:,'FLAG_WORK_PHONE'].iloc[0]}")
     
     # Bloc informations de propriété
