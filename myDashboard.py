@@ -155,6 +155,7 @@ class ClientAPI:
                 "prediction":{},
                 "prets":{},
                 "feature_importance":{}
+                "group_info" : {}
         }
 
         if cache:
@@ -232,6 +233,18 @@ class ClientAPI:
         """
         with open(file, 'w') as fp:
             json.dump(self.cache, fp, indent=4)
+
+    def get_group_infos(self, id_client:int, using_cache:bool=True)->Dict[Any, Any]:
+        """using cache (or not), make a requests to get client prediction
+        """
+        cache_key = "group_info"
+        if str(id_client) in self.cache[cache_key] and using_cache:
+            log.debug(f"using cache group_info: {list(self.cache[cache_key].keys())}")
+            return self.cache[cache_key][str(id_client)]
+        else:
+            req = self.make_request(f"/api/v1/group_info/{id_client}")
+            self.cache[cache_key][str(id_client)] = req
+            return req
 
 if __name__ == '__main__':
     mydb = CSV_DataBase('application_test.csv')

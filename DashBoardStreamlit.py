@@ -90,7 +90,7 @@ if st.sidebar.button("Demande de prêt") :
 
 if st.sidebar.button("Historique de prêt") :
     st.subheader("Historique de prêts")
-    st.markdown("__Prêts en cours__")
+    st.markdown("__Prêts en cours__") 
     mask = prets.loc[:,"CREDIT_ACTIVE"] == "Active"
     st.text(f"Nombre de prêts ouverts : {prets[mask].shape[0]} prêts.")
     st.text(f"Montant total des prêts en cours : {prets[mask].loc[:,'AMT_CREDIT_SUM'].sum()}")
