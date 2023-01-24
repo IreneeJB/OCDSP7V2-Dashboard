@@ -80,7 +80,7 @@ if st.sidebar.button("Demande de prêt") :
     fig = px.pie({'proba': ['yes', 'no'], 'pred': pred}, values='pred', names='proba', )  #color=['#00ff00', '#ff0000'])
     st.plotly_chart(fig)
     st.subheader("Critères d'influence dans le calcul de la probabilité")
-    fig = px.bar(values=importance[1], names=importance[0])
+    fig = px.bar(importance[1], names=importance[0])
     st.plotly_chart(fig)
 
 if st.sidebar.button("Historique de prêt") :
