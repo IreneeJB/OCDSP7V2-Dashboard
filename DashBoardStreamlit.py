@@ -96,6 +96,7 @@ if st.sidebar.button("Historique de prêt") :
                 st.text(f"Ouvert depuis : {0-pret.loc[:,'DAYS_CREDIT'].iloc[0]} jours")
                 st.text(f"Montant du prêt : {pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]}")
                 st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
+                st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
 
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
@@ -111,7 +112,6 @@ if st.sidebar.button("Historique de prêt") :
                 st.text(f"Ouvert depuis : {0-pret.loc[:,'DAYS_CREDIT'].iloc[0]} jours")
                 st.text(f"Montant du prêt : {pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]}")
                 st.text(f"Type de prêt : {pret.loc[:,'CREDIT_TYPE'].iloc[0]}")
-                st.text(f"Restant à rembourser : {pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]}")
 
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
