@@ -107,6 +107,7 @@ if st.sidebar.button("Historique de prêt") :
                 jaugedf = pd.DataFrame({'remboursé' : [pret.loc[:,'AMT_CREDIT_SUM'].iloc[0]-pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]],
                                        'A rembourser' : [pret.loc[:,'AMT_CREDIT_SUM_DEBT'].iloc[0]]})
                 fig = px.bar(jaugedf, orientation = 'h', barmode = 'stack')
+                st.plotly_chart(fig)
                 if pret.loc[:,"CREDIT_DAY_OVERDUE"].iloc[0] != 0 :
                     st.markdown(f"<font color = 'red'> Nombre de jours de retard : {pret.loc[:,'CREDIT_DAY_OVERDUE'].iloc[0]} </font>")
                     st.markdown(f"<font color = 'red'> Montant supplémentaire dû : {pret.loc[:,'AMT_CREDIT_SUM_OVERDUE'].iloc[0]} </font>")
